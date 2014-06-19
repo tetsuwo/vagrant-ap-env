@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       recipe[yum-epel]
       recipe[iptables]
       recipe[nginx]
+      recipe[php-env]
     ]
   end
 end
