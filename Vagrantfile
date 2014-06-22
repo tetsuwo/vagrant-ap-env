@@ -20,11 +20,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["./cookbooks", "./site-cookbooks"]
+    chef.json = {
+      nginx: {
+        env: ["php"]
+      },
+      mysql: {
+        server_root_password: "rootpass"
+      }
+    }
     chef.run_list = %w[
       recipe[yum-epel]
       recipe[iptables]
       recipe[nginx]
-      recipe[php-env]
+      recipe[php-env::php54]
+      recipe[mysql]
     ]
   end
 end

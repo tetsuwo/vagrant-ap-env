@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS test;
+
+DELETE FROM mysql.user WHERE user = '';
+
+SET PASSWORD FOR 'root'@'::1'                   = PASSWORD('<%= @root_password %>');
+SET PASSWORD FOR 'root'@'127.0.0.1'             = PASSWORD('<%= @root_password %>');
+SET PASSWORD FOR 'root'@'localhost'             = PASSWORD('<%= @root_password %>');
+SET PASSWORD FOR 'root'@'localhost.localdomain' = PASSWORD('<%= @root_password %>');
+
+FLUSH PRIVILEGES;
